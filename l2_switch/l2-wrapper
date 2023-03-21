@@ -1,2 +1,21 @@
 #!/bin/bash
+
+
+# Test to see if the binary has been extracted -- if not, extract it
+iou_bin=./i86bi-linux-l2-adventerprisek9-15.6.0.9S.bin
+iou_bin_zip=./i86bi-linux-l2-adventerprisek9-15.6.0.9S.bin.zip
+
+
+
+if [[ ! -f $iou_bin ]]
+then 
+   echo ""
+   echo "Extracting the executable ....."
+   unzip $iou_bin_zip
+else
+   echo ""
+   echo $iou_bin, " already exists.  Starting up"   
+fi
+
+#Run the switch
 ./wrapper.bin -m ./i86bi-linux-l2-adventerprisek9-15.6.0.9S.bin -p 5001 -- 501

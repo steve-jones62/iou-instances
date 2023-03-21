@@ -1,2 +1,0 @@
-#!/bin/bash
-./wrapper.bin -m ./i86bi-linux-l2-adventerprisek9-15.6.0.9S.bin -p 5001 -- 501

@@ -1,2 +1,0 @@
-#!/bin/bash
-./wrapper.bin -m ./i86bi-linux-l3-adventerprisek9-15.5.2T.bin -p 5000 -- 500
