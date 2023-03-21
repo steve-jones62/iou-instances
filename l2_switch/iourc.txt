@@ -1,2 +1,2 @@
 [license]
-ubuntu-2004-IOU = a1b7c818c24bc213;
+ubuntu-2004-iou = 7bb3473732c177b1;
