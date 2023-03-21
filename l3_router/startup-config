@@ -1,13 +1,13 @@
 
 !
-! Last configuration change at 13:47:28 PST Mon Mar 20 2023
+! Last configuration change at 21:14:53 PST Mon Mar 20 2023
 !
 version 15.5
 service timestamps debug datetime msec
 service timestamps log datetime msec
 no service password-encryption
 !
-hostname Switch
+hostname netops-l3-router
 !
 boot-start-marker
 boot-end-marker

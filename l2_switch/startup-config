@@ -1,33 +1,28 @@
 
 !
-! Last configuration change at 13:47:28 PST Mon Mar 20 2023
+! Last configuration change at 23:13:51 CST Mon Mar 20 2023
 !
-version 15.5
+version 15.6
+no service pad
 service timestamps debug datetime msec
 service timestamps log datetime msec
-no service password-encryption
 !
-hostname Switch
+hostname netops-l2-switch
 !
 boot-start-marker
 boot-end-marker
 !
 !
-enable secret 5 $1$3afA$6HCjCPt.dKxgw9btgiDpa0
+enable secret 5 $1$kAG8$b7r8P3RFuSin5uIGmqCwJ.
 enable password Cisco123!
 !
 no aaa new-model
 !
 !
 !
-bsd-client server url https://cloudsso.cisco.com/as/token.oauth2
-clock timezone PST -8 0
-mmi polling-interval 60
-no mmi auto-configure
-no mmi pvc
-mmi snmp-timeout 180
-!
-!
+no process cpu extended history
+no process cpu autoprofile hog
+clock timezone CST -6 0
 !
 !
 !
@@ -44,38 +39,27 @@ mmi snmp-timeout 180
 !
 !
 !
-!
-ip domain name ignw.io
-ip name-server 8.8.8.8
+ip audit notify log
+ip audit po max-events 100
+
 ip cef
 no ipv6 cef
+!
+!
+!
+!
+!
+!
 !
 multilink bundle-name authenticated
 !
 !
 !
+spanning-tree mode pvst
+spanning-tree extend system-id
 !
-!
-!
-!
-cts logging verbose
-!
-!
-username netops privilege 15 password 0 cisco123!
-!
-redundancy
-!
-!
-ip ssh time-out 60
-ip ssh version 2
-! 
-!
-!
-!
-!
-!
-!
-!
+vlan internal allocation policy ascending
+no cdp run
 !
 !
 !
@@ -83,75 +67,51 @@ ip ssh version 2
 !
 interface Ethernet0/0
  no ip address
+ duplex auto
+ no cdp enable
  no mop enabled
 !
 interface Ethernet0/1
  no ip address
  shutdown
+ duplex auto
+ no cdp enable
 !
 interface Ethernet0/2
  no ip address
  shutdown
+ duplex auto
+ no cdp enable
 !
 interface Ethernet0/3
  no ip address
  shutdown
+ duplex auto
+ no cdp enable
 !
 interface Ethernet1/0
  no ip address
  shutdown
+ duplex auto
+ no cdp enable
 !
 interface Ethernet1/1
  no ip address
  shutdown
+ duplex auto
+ no cdp enable
 !
 interface Ethernet1/2
  no ip address
  shutdown
+ duplex auto
+ no cdp enable
 !
 interface Ethernet1/3
  no ip address
  shutdown
-!
-interface Serial2/0
- no ip address
- shutdown
- serial restart-delay 0
-!
-interface Serial2/1
- no ip address
- shutdown
- serial restart-delay 0
-!
-interface Serial2/2
- no ip address
- shutdown
- serial restart-delay 0
-!
-interface Serial2/3
- no ip address
- shutdown
- serial restart-delay 0
-!
-interface Serial3/0
- no ip address
- shutdown
- serial restart-delay 0
-!
-interface Serial3/1
- no ip address
- shutdown
- serial restart-delay 0
-!
-interface Serial3/2
- no ip address
- shutdown
- serial restart-delay 0
-!
-interface Serial3/3
- no ip address
- shutdown
- serial restart-delay 0
+ duplex auto
+ no cdp enable
 !
 ip forward-protocol nd
 !
@@ -159,25 +119,19 @@ ip forward-protocol nd
 no ip http server
 no ip http secure-server
 !
+no service-routing capabilities-manager
 !
 !
 !
 control-plane
 !
 !
-!
-!
-!
-!
-!
-!
 line con 0
+ exec-timeout 0 0
  logging synchronous
 line aux 0
 line vty 0 4
  password cisco123!
  login
- transport input none
-!
 !
 end
