@@ -1,23 +1,31 @@
 #!/bin/bash
 
+
+
 # Test to see if the binary has been extracted -- if not, extract it
+
 iou_bin=./i86bi-linux-l3-adventerprisek9-15.5.2T.bin
 iou_bin_zip=./i86bi-linux-l3-adventerprisek9-15.5.2T.bin.zip
 
+# Test to see if the IOU code is already running.  If so, do nothing
 
+ps_output=$(ps aux | grep $iou_bin | grep -v grep)
 
-if [[ ! -f $iou_bin ]]
-then 
-   echo " "
-   echo "Extracting the executable ....."
-   unzip $iou_bin_zip
+if [[ $ps_output != *"i86bi-linux-l3"* ]]
+then
+   echo "$iou_bin is not running.  Starting......."
+   if [[ ! -f $iou_bin ]]
+   then 
+      echo ""
+      echo "Extracting the executable ....."
+      unzip $iou_bin_zip
+   else
+      echo ""
+      echo $iou_bin, " already exists.  Starting up"   
+   fi
+   #Run the switch
+   ./wrapper.bin -m ./i86bi-linux-l3-adventerprisek9-15.5.2T.bin -p 5001 -- 501
+   rm ./i86bi-linux-l3-adventerprisek9-15.5.2T.bin
 else
-   echo " "
-   echo $iou_bin, " already exists.  Starting up"   
+   echo "$iou_bin is already running.  Exiting ......."
 fi
-
-#Run the switch
-./wrapper.bin -m ./i86bi-linux-l3-adventerprisek9-15.5.2T.bin -p 5000 -- 500
-
-rm ./i86bi-linux-l3-adventerprisek9-15.5.2T.bin
-
