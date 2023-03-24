@@ -1,0 +1,137 @@
+
+!
+! Last configuration change at 16:02:12 CST Fri Mar 24 2023
+!
+version 15.6
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+!
+hostname netops-l2-switch
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 5 $1$kAG8$b7r8P3RFuSin5uIGmqCwJ.
+enable password Cisco123!
+!
+no aaa new-model
+!
+!
+!
+no process cpu extended history
+no process cpu autoprofile hog
+clock timezone CST -6 0
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+
+
+!
+!
+!
+ip audit notify log
+ip audit po max-events 100
+
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ description "Connection to server 1"
+ ip address 10.10.10.1 255.255.255.0
+ duplex auto
+ no cdp enable
+ no mop enabled
+!
+interface Ethernet0/1
+ description "Connection to server 2"
+ ip address 10.10.20.1 255.255.255.0
+ duplex auto
+ no cdp enable
+!
+interface Ethernet0/2
+ description "Connection to server firewall"
+ ip address 10.10.30.1 255.255.255.0
+ duplex auto
+ no cdp enable
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+ duplex auto
+ no cdp enable
+!
+interface Ethernet1/0
+ no ip address
+ shutdown
+ duplex auto
+ no cdp enable
+!
+interface Ethernet1/1
+ no ip address
+ shutdown
+ duplex auto
+ no cdp enable
+!
+interface Ethernet1/2
+ no ip address
+ shutdown
+ duplex auto
+ no cdp enable
+!
+interface Ethernet1/3
+ no ip address
+ shutdown
+ duplex auto
+ no cdp enable
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+no service-routing capabilities-manager
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ password cisco123!
+ login
+!
+end
