@@ -1,6 +1,6 @@
 
 !
-! Last configuration change at 16:02:12 CST Fri Mar 24 2023
+! Last configuration change at 23:03:26 CST Fri Mar 24 2023
 !
 version 15.6
 no service pad
@@ -59,6 +59,7 @@ spanning-tree mode pvst
 spanning-tree extend system-id
 !
 vlan internal allocation policy ascending
+no cdp run
 !
 !
 !
@@ -84,31 +85,33 @@ interface Ethernet0/2
  no cdp enable
 !
 interface Ethernet0/3
- no ip address
+ switchport
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
  shutdown
  duplex auto
  no cdp enable
 !
 interface Ethernet1/0
- no ip address
+ switchport
  shutdown
  duplex auto
  no cdp enable
 !
 interface Ethernet1/1
- no ip address
+ switchport
  shutdown
  duplex auto
  no cdp enable
 !
 interface Ethernet1/2
- no ip address
+ switchport
  shutdown
  duplex auto
  no cdp enable
 !
 interface Ethernet1/3
- no ip address
+ switchport
  shutdown
  duplex auto
  no cdp enable
