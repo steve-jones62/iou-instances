@@ -3,7 +3,7 @@
 
 
 # Test to see if the binary has been extracted -- if not, extract it
-
+cd /tmp/iou-instances/l3_router
 iou_bin=./i86bi-linux-l3-adventerprisek9-15.5.2T.bin
 iou_bin_zip=./i86bi-linux-l3-adventerprisek9-15.5.2T.bin.zip
 

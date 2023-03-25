@@ -3,7 +3,7 @@
 
 
 # Test to see if the binary has been extracted -- if not, extract it
-
+cd /tmp/iou-instances/l2_switch
 iou_bin=./i86bi-linux-l2-adventerprisek9-15.6.0.9S.bin
 iou_bin_zip=./i86bi-linux-l2-adventerprisek9-15.6.0.9S.bin.zip
 
@@ -24,8 +24,12 @@ then
       echo $iou_bin, " already exists.  Starting up"   
    fi
    #Run the switch
-   ./wrapper.bin -m ./i86bi-linux-l2-adventerprisek9-15.6.0.9S.bin -p 5001 -- 501
-
+   if [[ ! -f $iou_bin ]] 
+   then
+      echo "the binary did not extract for some reason"
+   else 
+      ./wrapper.bin -m ./i86bi-linux-l2-adventerprisek9-15.6.0.9S.bin -p 5001 -- 501
+   fi
 else
    echo "$iou_bin is already running.  Continuing ....."
 fi
