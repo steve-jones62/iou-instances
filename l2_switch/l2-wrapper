@@ -25,9 +25,9 @@ then
    fi
    #Run the switch
    ./wrapper.bin -m ./i86bi-linux-l2-adventerprisek9-15.6.0.9S.bin -p 5001 -- 501
-   rm ./i86bi-linux-l2-adventerprisek9-15.6.0.9S.bin
+
 else
-   echo "$iou_bin is already running.  Exiting ......."
+   echo "$iou_bin is already running.  Continuing ....."
 fi
 
 
