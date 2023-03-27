@@ -1,0 +1,4 @@
+#!/bin/bash
+iou_bin=i86bi-linux-l2-adventerprisek9-15.6.0.9S.bin
+iou_pid=$(pidof $iou_bin)
+kill $iou_pid
